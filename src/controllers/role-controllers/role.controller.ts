@@ -1,4 +1,4 @@
-import { Request, Response, response } from "express";
+import { Request, Response } from "express";
 import { Role, RoleInput } from "../../models/role-models/role.model";
 // first endpoint route
 const createRole = async(req: Request, res:Response) => {
@@ -36,7 +36,7 @@ const getRole = async (req:Request, res:Response) => {
     const role = await Role.findOne({_id: id});
     
     if(!role) {
-        res.status(2000).json({message: `Role with id ${id} not found.`});
+        res.status(200).json({message: `Role with id ${id} not found.`});
     }
 
     return res.status(200).json({data: role});
@@ -57,7 +57,7 @@ const updateRole = async (req: Request, res: Response) => {
 
     const roleUpdated = await Role.findById(id, { name, description});
 
-    return res.status(2000).json({data: roleUpdated});
+    return res.status(200).json({data: roleUpdated});
 }
 
 // fifth endpoint route
